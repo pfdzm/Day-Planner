@@ -1,12 +1,18 @@
 let app = document.querySelector("#app");
 
-let span = document.createElement("span");
+app.classList.add("container", "card");
+
+let appCont = document.createElement("div");
+
+appCont.classList.add("card-body");
+
+let span = document.createElement("h4");
 
 span.textContent = moment();
 
 span.setAttribute("id", "currDateTime");
 
-app.append(span);
+appCont.append(span);
 
 let hours = [
   "9 AM",
@@ -20,12 +26,13 @@ let hours = [
   "5 PM"
 ];
 
-let actArr = ["", "", "", "Go shopping", "", "", "", "", ""];
+if (localStorage.getItem("activities") == null) {
+  var activities = ["", "", "", "", "", "", "", "", ""];
+} else var activities = JSON.parse(localStorage.getItem("activities"));
 
 let table = document.createElement("table");
 table.classList.add("table");
 let tbody = document.createElement("tbody");
-table.append(tbody);
 
 for (let index = 0; index < hours.length; index++) {
   const element = hours[index];
@@ -36,20 +43,15 @@ for (let index = 0; index < hours.length; index++) {
 
   tdTime.textContent = element;
 
-  //   tdTime.setAttribute("data-index", index);
-
   tr.append(tdTime);
 
   let tdInput = document.createElement("td");
 
-  //   tdInput.classList.add("m-0", "p-0");
-  if (actArr[index] == "") {
-    var tdInputField = document.createElement("input");
-    tdInputField.setAttribute("placeholder", "...");
-  } else {
-    var tdInputField = document.createElement("span");
-    tdInputField.textContent = actArr[index];
-  }
+  var tdInputField = document.createElement("input");
+  tdInputField.setAttribute("data-index", index);
+
+  tdInputField.value = activities[index];
+
   tdInput.append(tdInputField);
   tr.append(tdInput);
 
@@ -57,13 +59,9 @@ for (let index = 0; index < hours.length; index++) {
   let tdSaveButton = document.createElement("button");
   tdSaveButton.setAttribute("data-index", index);
 
-  if (actArr[index] == "") {
-    tdSaveButton.textContent = "Save";
-    tdSaveButton.setAttribute("data-state", "save");
-  } else {
-    tdSaveButton.textContent = "Clear";
-    tdSaveButton.setAttribute("data-state", "clear");
-  }
+  tdSaveButton.textContent = "Save";
+  tdSaveButton.setAttribute("data-state", "save");
+
   tdSaveButton.classList.add("btn", "btn-primary");
 
   tdSave.append(tdSaveButton);
@@ -71,22 +69,24 @@ for (let index = 0; index < hours.length; index++) {
 
   tbody.append(tr);
 }
-let form = document.createElement("form");
 
-form.append(tbody);
+table.append(tbody);
 
-app.append(form);
+appCont.append(table);
 
-form.addEventListener("submit", event => {
-  event.preventDefault();
-});
+app.append(appCont);
 
-form.addEventListener("click", event => {
+document.addEventListener("click", event => {
   if (event.target.nodeName == "BUTTON") {
-    if (actArr[event.target.getAttribute("data-index")]) {
-      console.log("activity planned");
+    let index = event.target.getAttribute("data-index");
+    let input = document.querySelector("input[data-index='" + index + "']")
+      .value;
+    if (activities[index] == input) {
+      console.log("...");
     } else {
-      console.log("empty row");
+      activities[index] = input;
+      localStorage.setItem("activities", JSON.stringify(activities));
+      console.log(activities);
     }
   }
 });
