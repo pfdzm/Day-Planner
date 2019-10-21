@@ -9,7 +9,7 @@ appCont.classList.add("card-body");
 
 let span = document.createElement("h4");
 
-span.textContent = moment().calendar();
+span.textContent = moment().format('LLL')
 
 let nowHour = parseInt(moment().format("HH"), 10);
 
