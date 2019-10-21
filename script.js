@@ -66,9 +66,9 @@ for (let index = 0; index < hours.length; index++) {
     tr.classList.add("bg-light", "text-secondary");
     tdInputField.classList.add("text-secondary");
   } else if (index + 9 === nowHour) {
-    tr.classList.add("bg-danger");
+    tr.classList.add("current");
   } else {
-    tr.classList.add("bg-success");
+    tr.classList.add("future");
   }
 
   tdInputField.textContent = activities[index];
