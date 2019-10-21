@@ -1,6 +1,6 @@
 let app = document.querySelector("#app");
 
-app.classList.add("container", "card");
+app.classList.add("row", "card");
 
 let appCont = document.createElement("div");
 
@@ -9,6 +9,8 @@ appCont.classList.add("card-body");
 let span = document.createElement("h4");
 
 span.textContent = moment().format("LLL");
+
+span.classList.add('font-weight-bold', 'text-dark')
 
 let nowHour = parseInt(moment().format("HH"), 10);
 
@@ -45,7 +47,7 @@ for (let index = 0; index < hours.length; index++) {
 
   let tdTime = document.createElement("div");
 
-  tdTime.classList.add("timeCol", "col-2", "pr-1", "pl-0", "font-weight-bold");
+  tdTime.classList.add("timeCol", "col-2", "pr-1", "pl-0", "font-weight-bold", "text-dark");
 
   let spanTime = document.createElement("span");
 
