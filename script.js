@@ -61,7 +61,6 @@ for (let index = 0; index < hours.length; index++) {
   var tdInputField = document.createElement("textarea");
   tdInputField.setAttribute("data-index", index);
   tdInputField.setAttribute("rows", "5");
-  tdInputField.classList.add("my-0", "py-3");
 
   if (index + 9 < nowHour) {
     tr.classList.add("bg-light", "text-secondary");
@@ -78,6 +77,8 @@ for (let index = 0; index < hours.length; index++) {
   tr.append(tdInput);
 
   let tdSave = document.createElement("td");
+
+  tdSave.classList.add("saveButton", "text-right")
   let tdSaveButton = document.createElement("button");
   tdSaveButton.setAttribute("data-index", index);
 
