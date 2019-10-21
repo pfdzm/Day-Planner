@@ -1,4 +1,3 @@
-
 let app = document.querySelector("#app");
 
 app.classList.add("container", "card");
@@ -9,7 +8,7 @@ appCont.classList.add("card-body");
 
 let span = document.createElement("h4");
 
-span.textContent = moment().format('LLL')
+span.textContent = moment().format("LLL");
 
 let nowHour = parseInt(moment().format("HH"), 10);
 
@@ -33,18 +32,20 @@ if (localStorage.getItem("activities") == null) {
   var activities = ["", "", "", "", "", "", "", "", ""];
 } else activities = JSON.parse(localStorage.getItem("activities"));
 
-let table = document.createElement("table");
-table.classList.add("table");
-let tbody = document.createElement("tbody");
+let tbody = document.createElement("div");
+
+tbody.classList.add("container");
 
 for (let index = 0; index < hours.length; index++) {
   const element = hours[index];
 
-  let tr = document.createElement("tr");
+  let tr = document.createElement("div");
 
-  let tdTime = document.createElement("td");
+  tr.classList.add("row");
 
-  tdTime.classList.add("timeCol");
+  let tdTime = document.createElement("div");
+
+  tdTime.classList.add("timeCol", "col-2");
 
   let spanTime = document.createElement("span");
 
@@ -56,11 +57,10 @@ for (let index = 0; index < hours.length; index++) {
 
   tr.append(tdTime);
 
-  let tdInput = document.createElement("td");
-
   var tdInputField = document.createElement("textarea");
   tdInputField.setAttribute("data-index", index);
   tdInputField.setAttribute("rows", "5");
+  tdInputField.classList.add("col-8", "border");
 
   if (index + 9 < nowHour) {
     tr.classList.add("bg-light", "text-secondary");
@@ -73,29 +73,25 @@ for (let index = 0; index < hours.length; index++) {
 
   tdInputField.textContent = activities[index];
 
-  tdInput.append(tdInputField);
-  tr.append(tdInput);
+  tr.append(tdInputField);
 
-  let tdSave = document.createElement("td");
-
-  tdSave.classList.add("saveButton", "text-right")
   let tdSaveButton = document.createElement("button");
+  tdSaveButton.classList.add("saveButton", "col-2");
   tdSaveButton.setAttribute("data-index", index);
 
   tdSaveButton.textContent = "Save";
   tdSaveButton.setAttribute("data-state", "save");
 
-  tdSaveButton.classList.add("btn", "btn-primary");
+  tdSaveButton.classList.add("btn", "btn-primary", "border");
 
-  tdSave.append(tdSaveButton);
-  tr.append(tdSave);
+  tr.append(tdSaveButton);
 
   tbody.append(tr);
 }
 
-table.append(tbody);
+// table.append(tbody);
 
-appCont.append(table);
+appCont.append(tbody);
 
 app.append(appCont);
 
