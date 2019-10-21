@@ -60,7 +60,7 @@ for (let index = 0; index < hours.length; index++) {
   var tdInputField = document.createElement("textarea");
   tdInputField.setAttribute("data-index", index);
   tdInputField.setAttribute("rows", "5");
-  tdInputField.classList.add("col-8", "border");
+  tdInputField.classList.add("col-8", "border", "p-1");
 
   if (index + 9 < nowHour) {
     tr.classList.add("bg-light", "text-secondary");
