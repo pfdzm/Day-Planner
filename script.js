@@ -45,13 +45,13 @@ for (let index = 0; index < hours.length; index++) {
 
   let tdTime = document.createElement("div");
 
-  tdTime.classList.add("timeCol", "col-2");
+  tdTime.classList.add("timeCol", "col-2", "pr-1", "pl-0", "font-weight-bold");
 
   let spanTime = document.createElement("span");
 
   spanTime.textContent = element;
 
-  spanTime.classList.add("pl-2");
+  // spanTime.classList.add("pl-2");
 
   tdTime.append(spanTime);
 
@@ -78,7 +78,7 @@ for (let index = 0; index < hours.length; index++) {
   tr.append(tdInputField);
 
   let tdSaveButton = document.createElement("button");
-  tdSaveButton.classList.add("saveButton", "col-2");
+  tdSaveButton.classList.add("saveButton", "col-2", "p-0");
   tdSaveButton.setAttribute("data-index", index);
 
   tdSaveButton.textContent = "Save";
