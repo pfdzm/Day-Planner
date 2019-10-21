@@ -60,7 +60,9 @@ for (let index = 0; index < hours.length; index++) {
   var tdInputField = document.createElement("textarea");
   tdInputField.setAttribute("data-index", index);
   tdInputField.setAttribute("rows", "5");
-  tdInputField.classList.add("col-8", "border", "p-1");
+  if(index==hours.length-1) {
+    tdInputField.classList.add("col-8", "border", "p-1");
+  } else {tdInputField.classList.add("col-8", "border", "p-1", "border-bottom-0");}
 
   if (index + 9 < nowHour) {
     tr.classList.add("bg-light", "text-secondary");
@@ -82,7 +84,7 @@ for (let index = 0; index < hours.length; index++) {
   tdSaveButton.textContent = "Save";
   tdSaveButton.setAttribute("data-state", "save");
 
-  tdSaveButton.classList.add("btn", "btn-primary", "border");
+  tdSaveButton.classList.add("btn", "btn-primary", "border", "border-bottom-0");
 
   tr.append(tdSaveButton);
 
